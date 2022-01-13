@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\GetUserController;
 use App\Http\Controllers\KendaraanController;
-
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,8 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('register', RegisterController::class);
 
-Route::resource('kendaraan', KendaraanController::class);
-Route::get('mobil', [KendaraanController::class, 'getAllMobil']);
-Route::get('motor', [KendaraanController::class, 'getAllMotor']);
+Route::post('register', RegisterController::class);
+Route::post('login', LoginController::class);
+Route::get('logout', LogoutController::class);
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('kendaraan', KendaraanController::class);
+    Route::get('mobil', [KendaraanController::class, 'getAllMobil']);
+    Route::get('motor', [KendaraanController::class, 'getAllMotor']);
+});

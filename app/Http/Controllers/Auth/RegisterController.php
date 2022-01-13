@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -22,6 +23,12 @@ class RegisterController extends Controller
             'password' => ['required', 'min:3']
         ]);
 
-        return User::create($request->all());
+        $user = new User();
+        $user->password = Hash::make($request->password);
+        $user->email = $request->email;
+        $user->username = $request->username;
+        $user->save();
+
+        return  $user;
     }
 }
