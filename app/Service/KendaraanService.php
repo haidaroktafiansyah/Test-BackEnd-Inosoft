@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Repository\KendaraanRepository;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
 
@@ -22,6 +23,8 @@ class KendaraanService
             'warna' => ['required', 'string'],
             'harga' => ['required', 'numeric'],
             'stok' => ['required', 'numeric'],
+            'terjual' => ['required', 'numeric'],
+            'tipe_kendaraan' => ['required', Rule::in(['motor', 'mobil'])],
         ]);
         if ($validator->fails()) {
             throw new InvalidArgumentException($validator->errors()->first());
@@ -39,9 +42,9 @@ class KendaraanService
         return $this->KendaraanRepository->store($data);
     }
 
-    public function update($data)
+    public function update($data, $id)
     {
-        return $this->KendaraanRepository->update($data);
+        return $this->KendaraanRepository->update($data, $id);
     }
 
     public function findById($data)
@@ -52,5 +55,15 @@ class KendaraanService
     public function deleteById($data)
     {
         return $this->KendaraanRepository->deleteById($data);
+    }
+
+    public function getAllMobil()
+    {
+        return $this->KendaraanRepository->getAllMobil();
+    }
+
+    public function getAllMotor()
+    {
+        return $this->KendaraanRepository->getAllMotor();
     }
 }

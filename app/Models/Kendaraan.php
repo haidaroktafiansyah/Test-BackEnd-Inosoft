@@ -11,6 +11,6 @@ class Kendaraan extends Model
     protected $connection = 'mongodb';
     protected $collection = 'kendaraans';
     protected $fillable = [
-        'tahun_keluaran', 'warna', 'harga', 'stok', 'kendaraan'
+        'tahun_keluaran', 'warna', 'harga', 'stok', 'terjual', 'tipe_kendaraan', ' mesin', 'suspensi', 'kapasistas_penumpang', 'transmisi', 'tipe'
     ];
 }

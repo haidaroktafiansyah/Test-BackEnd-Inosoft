@@ -18,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('kendaraan', KendaraanController::class);
+Route::get('mobil', [KendaraanController::class, 'getAllMobil']);
+Route::get('motor', [KendaraanController::class, 'getAllMotor']);

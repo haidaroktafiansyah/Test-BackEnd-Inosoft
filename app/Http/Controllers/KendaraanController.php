@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kendaraan;
 use App\Service\KendaraanService;
+use App\Service\MobilService;
 use App\Service\MotorService;
 use Exception;
 use Illuminate\Http\Request;
@@ -12,11 +13,13 @@ class KendaraanController extends Controller
 {
     private $motorService;
     private $KendaraanService;
+    private $mobilService;
 
-    public function __construct(MotorService $motorService, KendaraanService $KendaraanService)
+    public function __construct(MotorService $motorService, KendaraanService $KendaraanService, MobilService $mobilService)
     {
         $this->motorService = $motorService;
         $this->KendaraanService = $KendaraanService;
+        $this->mobilService = $mobilService;
     }
 
     public function index()
@@ -31,8 +34,13 @@ class KendaraanController extends Controller
     public function store(Request $request)
     {
         try {
-            $datatervalidasi = $this->motorService->validator($request);
-            return $this->KendaraanService->store($datatervalidasi);
+            if ($request->tipe_kendaraan == 'motor') {
+                $datatervalidasi = $this->motorService->validator($request);
+                return $this->KendaraanService->store($datatervalidasi);
+            } else {
+                $datatervalidasi = $this->mobilService->validator($request);
+                return $this->KendaraanService->store($datatervalidasi);
+            }
         } catch (Exception $e) {
             return response()->json($e->getMessage());
         }
@@ -47,11 +55,11 @@ class KendaraanController extends Controller
         }
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         try {
             $datatervalidasi = $this->motorService->validator($request);
-            return $this->KendaraanService->update($datatervalidasi);
+            return $this->KendaraanService->update($datatervalidasi, $id);
         } catch (Exception $e) {
             return response()->json($e->getMessage());
         }
@@ -61,6 +69,24 @@ class KendaraanController extends Controller
     {
         try {
             return $this->KendaraanService->deleteById($kendaraan);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
+
+    public function getAllMobil()
+    {
+        try {
+            return  $this->KendaraanService->getAllMobil();
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
+
+    public function getAllMotor()
+    {
+        try {
+            return  $this->KendaraanService->getAllMotor();
         } catch (Exception $e) {
             return response()->json($e->getMessage());
         }

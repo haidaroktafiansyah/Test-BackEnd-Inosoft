@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
 use phpDocumentor\Reflection\Types\Parent_;
 
-class MotorService extends KendaraanService
+class MobilService extends KendaraanService
 {
     public function validator($data)
     {
@@ -15,8 +15,8 @@ class MotorService extends KendaraanService
 
         $validator = Validator::make($data, [
             'mesin' => ['required', 'string'],
-            'tipe_transmisi' => ['required', 'string'],
-            'tipe_suspensi' => ['required', 'string'],
+            'kapasitas_penumpang' => ['required', 'numeric'],
+            'tipe' => ['required', 'string'],
         ]);
         if ($validator->fails()) {
             throw new InvalidArgumentException($validator->errors()->first());
