@@ -58,7 +58,7 @@ class KendaraanRepository
 
         $kendaraan->update();
 
-        return $kendaraan;
+        return $data;
     }
 
     public function findByid($data)
