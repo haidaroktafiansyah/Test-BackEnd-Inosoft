@@ -18,7 +18,10 @@ class KendaraanFactory extends Factory
             'warna' => $this->faker->colorName(),
             'harga' => $this->faker->numberBetween($min = 1000000, $max = 1000000000),
             'stok' => $this->faker->numberBetween($min = 1000, $max = 10000),
-            'kendaraan' => $this->faker->company(),
+            'tipe_kendaraan' => $this->faker->randomElement(['mobil', 'motor']),
+            'mesin' => $this->faker->domainWord(),
+            'tipe_suspensi' => $this->faker->company(),
+            'tipe_transmisi' => $this->faker->citySuffix(),
         ];
     }
 }

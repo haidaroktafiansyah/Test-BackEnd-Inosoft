@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\KendaraanController;
 
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('register', RegisterController::class);
 
 Route::resource('kendaraan', KendaraanController::class);
 Route::get('mobil', [KendaraanController::class, 'getAllMobil']);
