@@ -29,4 +29,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('kendaraan', KendaraanController::class);
     Route::get('mobil', [KendaraanController::class, 'getAllMobil']);
     Route::get('motor', [KendaraanController::class, 'getAllMotor']);
+    Route::get('motor/stock', [KendaraanController::class, 'getAllStockMotor']);
+    Route::get('mobil/stock', [KendaraanController::class, 'getAllStockMotor']);
+    Route::get('motor/terjual', [KendaraanController::class, 'getAllTerjualMotor']);
+    Route::get('mobil/terjual', [KendaraanController::class, 'getAllTerjualMobil']);
 });

@@ -91,4 +91,41 @@ class KendaraanController extends Controller
             return response()->json($e->getMessage());
         }
     }
+
+    public function getAllStockMotor()
+    {
+        try {
+            return  $this->KendaraanService->getAllStockMotor();
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
+
+    public function getAllStockMotbil()
+    {
+        try {
+            return  $this->KendaraanService->getAllStockMobil();
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
+
+    public function getAllTerjualMotor()
+    {
+        try {
+            return  $this->KendaraanService->getAllTerjualMotor();
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
+
+
+    public function getAllTerjualMobil()
+    {
+        try {
+            return  $this->KendaraanService->getAllTerjualMobil();
+        } catch (Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
 }

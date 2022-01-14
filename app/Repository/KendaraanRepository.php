@@ -70,4 +70,44 @@ class KendaraanRepository
     {
         return  Kendaraan::destroy($data->id) ? 'Data Deleted' : 'Data Not Found';
     }
+
+    public function getAllStockMotor()
+    {
+        $excludeprice = Kendaraan::where(
+            'tipe_kendaraan',
+            'motor',
+        )->get();;
+
+        return $excludeprice->makeHidden(['terjual']);
+    }
+
+    public function getAllStockMobil()
+    {
+        $excludeprice = Kendaraan::where(
+            'tipe_kendaraan',
+            'mobil',
+        )->get();;
+
+        return $excludeprice->makeHidden(['terjual']);
+    }
+
+    public function getAllTerjualMotor()
+    {
+        $excludeprice = Kendaraan::where(
+            'tipe_kendaraan',
+            'motor',
+        )->get();;
+
+        return $excludeprice->makeHidden(['stok']);
+    }
+
+    public function getAllTerjualMobil()
+    {
+        $excludeprice = Kendaraan::where(
+            'tipe_kendaraan',
+            'mobil',
+        )->get();;
+
+        return $excludeprice->makeHidden(['stok']);
+    }
 }

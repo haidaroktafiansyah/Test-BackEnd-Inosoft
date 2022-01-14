@@ -66,4 +66,24 @@ class KendaraanService
     {
         return $this->KendaraanRepository->getAllMotor();
     }
+
+    public function getAllStockMotor()
+    {
+        return $this->KendaraanRepository->getAllStockMotor();
+    }
+
+    public function getAllStockMobil()
+    {
+        return $this->KendaraanRepository->getAllStockMobil();
+    }
+
+    public function getAllTerjualMotor()
+    {
+        return $this->KendaraanRepository->getAllTerjualMotor();
+    }
+
+    public function getAllTerjualMobil()
+    {
+        return $this->KendaraanRepository->getAllTerjualMobil();
+    }
 }
