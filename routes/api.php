@@ -20,17 +20,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::post('register', RegisterController::class);
 Route::post('login', LoginController::class);
 Route::get('logout', LogoutController::class);
 
 Route::middleware(['auth'])->group(function () {
+
+
     Route::resource('kendaraan', KendaraanController::class);
-    Route::get('mobil', [KendaraanController::class, 'getAllMobil']);
-    Route::get('motor', [KendaraanController::class, 'getAllMotor']);
     Route::get('motor/stock', [KendaraanController::class, 'getAllStockMotor']);
     Route::get('mobil/stock', [KendaraanController::class, 'getAllStockMotor']);
     Route::get('motor/terjual', [KendaraanController::class, 'getAllTerjualMotor']);
     Route::get('mobil/terjual', [KendaraanController::class, 'getAllTerjualMobil']);
+
+
+    Route::get('mobil', [KendaraanController::class, 'getAllMobil']);
+    Route::get('motor', [KendaraanController::class, 'getAllMotor']);
 });

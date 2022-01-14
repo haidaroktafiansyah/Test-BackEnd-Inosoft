@@ -10,6 +10,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "jenssegers/mongodb": "^3.8",
         "laravel/framework": "^8.75",
+        "laravel/legacy-factories": "^1.3",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "tymon/jwt-auth": "^1.0"
